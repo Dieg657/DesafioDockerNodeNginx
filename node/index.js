@@ -1,5 +1,6 @@
 import express from 'express';
 import { faker } from '@faker-js/faker'
+import database from './src/database/database.mjs';
 import people from './src/database/people.mjs' 
 const app = express()
 const port = 3000
@@ -14,6 +15,17 @@ app.get('/', async (request, response) => {
                         ${createTable(peopleArray)}
                    </body>`)
 })
+
+app.get('/healthcheck', async (request, response) => {
+    try {
+        await database.healthCheck();
+        response.status(200)
+        response.send('Healthy')
+    } catch (error) {
+        response.status(503)
+        response.send('Unhealthy')
+    }
+});
 
 app.listen(port, () => {
     console.log('Running on port: ' + port)

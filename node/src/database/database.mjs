@@ -7,8 +7,11 @@ let mysqlConnection = async () => await mysql.createConnection({
     database: 'node_db'
 })
 
+let healthCheck = async () => (await mysqlConnection()).query('SELECT 1 FROM People;')
+
 const database = {
-    mysqlConnection
+    mysqlConnection,
+    healthCheck
 }
 
 export default database;
