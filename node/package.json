@@ -6,9 +6,15 @@
   "author": "",
   "license": "ISC",
   "description": "Desafio Docker de Node/MySQL com Nginx como Proxy Reverso",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
     "express": "^4.21.2",
     "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
